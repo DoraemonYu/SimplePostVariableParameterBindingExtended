@@ -9,7 +9,7 @@ Consider this code :
     [MultiParameterSupport]
     public HttpResponseMessage Login(int MasterEntity, string username, string password, string userAgent)
     {
-		//...logics...
+         //...logics...
     }
 ```
     
@@ -24,7 +24,7 @@ So you couldn't do :
 ```   
     public HttpResponseMessage Login(int? MyInt,int A)
     { 
-		//...logics...
+        //...logics...
     }
 ```
    
@@ -53,7 +53,7 @@ webAPI can work with JSON (obviously) , but you need:
 ```
     Login(NyLoginParams mlp)
     {
-		//...logics...
+        //...logics...
     }
 ```
 
@@ -62,10 +62,16 @@ Assuming you need to expose Many existsing services which doesnt has `MyMethodPa
 
 ## Development guide
 
-Download these two ".cs" file, add to your asp.net mvc website project.
+Download these two ".cs" file, add to your Asp.net MVC Website Project.
 Then add the code as below to the "WebApiConfig.cs" file like this:
 ```
-config.ParameterBindingRules.Insert(0, SimplePostVariableParameterBinding.HookupParameterBinding);
+        public static void Register(HttpConfiguration config)
+        {
+		//...Default logics...
+		
+		//Bind SimplePostVariableParameterBinding
+		config.ParameterBindingRules.Insert(0, SimplePostVariableParameterBinding.HookupParameterBinding);
+	}
 ```
 
 
